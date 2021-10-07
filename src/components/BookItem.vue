@@ -1,29 +1,36 @@
 <template>
-  <v-col cols="3">
-    <v-card class="fill-height">
-      <v-img
-          v-if="getImageLink"
-          contain
-          aspect-ratio="1.2"
-          :src="getImageLink"
-      />
-      <v-divider/>
 
-      <v-card-title>{{book.volumeInfo.title}}</v-card-title>
-      <v-card-text>
-        <h3>{{getAuthors}}</h3>
-      </v-card-text>
-      <v-card-text>
-        <h3 class="text-center">{{getPublishedDate}}</h3>
-      </v-card-text>
-      <v-divider/>
-      <v-spacer/>
-      <div class="d-flex justify-center mt-5">
-        <v-btn @click="openBookForm">Заказать</v-btn>
-      </div>
+    <v-col cols="4">
+      <v-card class="fill-height">
+        <v-img
+            contain
+            aspect-ratio="1.2"
+            :src="book.image"
+        />
+        <v-divider/>
+        <v-card-title>{{book.title}}</v-card-title>
+        <v-card-text>
+          <h3 class="mb-2">{{book.authors}}</h3>
+          <h3 class="text-center">{{book.publishedDate}}</h3>
+        </v-card-text>
+        <v-divider/>
 
-    </v-card>
-  </v-col>
+        <div class="d-flex justify-center mt-5 mb-5">
+
+          <v-btn color="teal"
+                 class="white--text"
+                 @click.stop="openBookForm"
+                 large
+                 v-if="book.price>0">Заказать</v-btn>
+
+          <v-btn @click.stop="openBookForm"
+                 disabled
+                 v-else>Нет в наличии</v-btn>
+        </div>
+      </v-card>
+    </v-col>
+
+
 </template>
 
 <script>
@@ -48,7 +55,8 @@ export default {
   },
   methods: {
     openBookForm() {
-      this.$emit('openBookForm')
+      this.$store.commit('setCurrentBook', this.book)
+      this.$emit('openBook')
     }
   }
 }

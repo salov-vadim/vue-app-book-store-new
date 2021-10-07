@@ -1,16 +1,25 @@
 <template>
-  <v-form @submit.prevent="searchText">
+  <v-form @submit.prevent="setBooks(text)" v-model="valid" ref="form">
     <v-container>
       <v-row>
         <v-col cols="10">
-          <v-text-field class="" v-model.trim="text"/>
+          <v-text-field class=""
+                        v-model.trim="text"
+                        placeholder="Javascript"
+                        label="Название книги"
+                        color="teal"
+                        filled
+                        :counter="50"
+                        :rules="[rules.required, rules.counter]"/>
         </v-col>
         <v-col cols="2">
           <v-btn type="submit"
-                 :disabled="getLoading"
+                 :disabled="getLoading || !valid"
                  :loading="getLoading"
                  class="white--text"
-                 color="purple darken-2">Отправить</v-btn>
+                 x-large
+                 elevation="3"
+                 color="teal">Отправить</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -22,23 +31,21 @@ import {mapGetters, mapState, mapActions} from "vuex";
 
 export default {
   name: "SearchForm",
-  props:{
-    //loading: Boolean
-  },
+
   data: () => ({
-    text: ''
+    text: '',
+    valid: true,
+    rules: {
+      required: value => !!value || 'Не заполнено',
+      counter: value => value.length <= 50 || 'Не более 50-ти символов',
+    },
   }),
   computed: {
     ...mapState(['loading']),
     ...mapGetters(['getLoading'])
   },
   methods: {
-    ...mapActions(['setBooks']),
-    searchText() {
-      //if (this.text) this.$emit('searchBooks', this.text)
-      if(this.text) this.setBooks(this.text)
-      this.text = ''
-    }
+    ...mapActions(['setBooks'])
   }
 }
 </script>

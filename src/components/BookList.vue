@@ -1,26 +1,32 @@
 <template>
   <v-container>
-    <v-row >
+    <v-row>
       <BookItem v-for="book in books"
                 :book="book"
                 :key="book.id"
-                @openBookForm="$emit('openBookForm', book)"
+                @openBook="dialogVisible = true"
       />
     </v-row>
+    <BookDialog v-model="dialogVisible"
+                :book="getCurrentBook"/>
   </v-container>
 </template>
 
 <script>
 import BookItem from "./BookItem";
+import BookDialog from "./BookDialog";
+import {mapGetters} from "vuex";
+
 
 export default {
   name: "BookList",
-  components: {BookItem},
-  props:['books'],
-
-  mounted() {
-
-
+  components: {BookItem, BookDialog},
+  props: ['books'],
+  data: () => ({
+    dialogVisible:false
+  }),
+  computed:{
+    ...mapGetters(['getCurrentBook'])
   }
 }
 </script>

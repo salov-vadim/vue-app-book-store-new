@@ -1,19 +1,18 @@
 <template>
-  <v-container>
-    <SearchForm @searchBooks="searchBooks" :loading="getLoading"/>
-
+  <v-container class="my-7">
+    <SearchForm @searchBooks="searchText"/>
     <v-dialog
         v-model="getLoading"
         hide-overlay
         persistent
-        width="300"
+        width="500"
     >
-      <v-card color="primary" dark>
+      <v-card color="blue-grey darken-4" dark>
         <v-card-text>
           Please stand by
           <v-progress-linear
               indeterminate
-              color="white"
+              color="teal"
               class="mb-0"
           ></v-progress-linear>
         </v-card-text>
@@ -23,16 +22,15 @@
     <div v-if="!getLoading">
       <div v-if="getSearchBooks.length>0">
         <v-divider class="my-5"/>
-        <h2>Результат поиска по слову {{ getSearchText }}</h2>
+        <h2>Результаты поиска по слову: "{{ getSearchText }}"</h2>
         <v-divider class="my-5"/>
         <BookList :books="getSearchBooks" @openBookForm="openBookDialog"/>
       </div>
       <div v-else>
-        <h2>Для поиска книг введите текст и нажмите кнопку отправить</h2>
+        <h2>Для поиска книг введите текст и нажмите кнопку "Отправить"</h2>
       </div>
     </div>
 
-    <BookDialog  v-model="dialogVisible" :book="currentBook" />
   </v-container>
 </template>
 
@@ -47,10 +45,8 @@ export default {
   components: {BookDialog, SearchForm, BookList},
   data: () => (
       {
-        //books: [],
         searchText: '',
         currentBook: {},
-        //loading: false,
         dialogVisible: false
       }
   ),
@@ -62,16 +58,6 @@ export default {
   methods: {
     ...mapActions(['setBooks']),
     searchBooks(text) {
-      // this.loading = true
-      // setTimeout(() => {
-      //   this.axios.get(`https://www.googleapis.com/books/v1/volumes?q=${text}`)
-      //       .then(res => {
-      //         this.books = res.data.items
-      //         this.searchText = text
-      //         this.loading = false
-      //       })
-      //       .catch(() => this.loading = false)
-      // }, 500)
       this.setBooks(text)
     },
     openBookDialog(book) {
