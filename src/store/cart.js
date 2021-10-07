@@ -6,23 +6,14 @@ export default {
   },
 
   getters: {
-    getCartItems: (state) => state.cartItems,
-    getTotal(state) {
-      return state.cartItems.reduce((sum, current) => sum + current.price, 0)
-    },
+    getCartItems: ({cartItems}) => cartItems,
+    getTotal: ({cartItems}) => cartItems.reduce((sum, current) => sum + current.price, 0),
     getTotalOrder: ({totalOrder}) => totalOrder
   },
 
   mutations: {
-
-    addBookToCart(state, book) {
-      const newItemBook = {
-        image: book.image,
-        description: book.description,
-        price: book.price,
-        currency: book.currency
-      }
-      state.cartItems.push(newItemBook)
+    addBookToCart(state, {image, description, price, currency}) {
+      state.cartItems.push({image, description, price, currency})
     },
 
     setTotal(state, total) {

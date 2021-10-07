@@ -12,7 +12,6 @@ export default {
     },
     loading: false,
     searchText: '',
-    dialogVisible: false,
     alert: false
   },
 
@@ -20,7 +19,6 @@ export default {
     getSearchBooks: ({books}) => books,
     getLoading: ({loading}) => loading,
     getSearchText: ({searchText}) => searchText,
-    getDialogVisible: ({searchText}) => searchText,
     getCurrentBook: ({currentBook}) => currentBook,
     getAlert: ({alert}) => alert,
   },
@@ -62,7 +60,6 @@ export default {
       axios.get(`${apiBase}${text}`)
         .then(res => {
           commit('setBooks', getTransformBooks(res.data.items))
-          commit('setSearchText', text)
           commit('setLoadingFalse')
         })
         .catch((e) => {

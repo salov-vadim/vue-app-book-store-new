@@ -42,17 +42,6 @@ export default {
       required: true
     }
   },
-  computed: {
-    getAuthors() {
-      return this.book.volumeInfo.authors?.join(',')
-    },
-    getPublishedDate() {
-      return this.book.volumeInfo.publishedDate?.split('-').reverse().join('.')
-    },
-    getImageLink() {
-      return this.book.volumeInfo.imageLinks?.smallThumbnail
-    }
-  },
   methods: {
     openBookForm() {
       this.$store.commit('setCurrentBook', this.book)
