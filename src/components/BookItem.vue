@@ -4,7 +4,7 @@
     <v-card class="d-flex flex-column justify-space-between fill-height">
       <v-img
           contain
-          aspect-ratio="1.2"
+          aspect-ratio="1.5"
           :src="book.image"
       />
       <v-divider/>
