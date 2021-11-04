@@ -58,9 +58,11 @@ export default {
 
   methods: {
     ...mapActions(['setBooks']),
+
     searchBooks(text) {
       this.setBooks(text)
     },
+
     openBookDialog(book) {
       this.currentBook = book
       this.dialogVisible = true
@@ -68,7 +70,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

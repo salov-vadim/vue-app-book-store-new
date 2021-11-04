@@ -39,6 +39,7 @@ import {mapGetters, mapMutations} from "vuex";
 
 export default {
   name: "CartPage",
+
   data() {
     return {
       headers: [
@@ -53,21 +54,19 @@ export default {
       ],
     }
   },
+
   computed: {
     ...mapGetters(['getCartItems', 'getTotal'])
   },
+
   methods: {
-    ...mapMutations(['setTotal', 'showAlert']),
+    ...mapMutations(['setTotal', 'showAlert', 'hideAlert']),
     checkout() {
       this.setTotal(this.getTotal)
       this.showAlert()
-      this.$store.dispatch('hideAlert')
+      this.hideAlert()
       this.$router.push('/')
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

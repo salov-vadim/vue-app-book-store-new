@@ -1,5 +1,6 @@
 <template>
   <transition name="fade">
+
     <v-alert
         v-if="$store.getters.getAlert"
         color="teal"

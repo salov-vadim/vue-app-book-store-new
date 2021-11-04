@@ -6,7 +6,10 @@
                    class="text--lighten-3"
       ><h2>BOOKSTORE</h2>
       </router-link>
+
+
       <v-spacer/>
+
       <router-link to="/cart" style="text-decoration: none; color: teal">
         <v-icon dark class="mr-2">
           mdi-cart-variant
@@ -14,6 +17,7 @@
         <span>{{ getCartItems.length }} items</span>
         <span class="ml-2">({{ getTotal }} UAH)</span>
       </router-link>
+
     </v-app-bar>
   </v-container>
 </template>

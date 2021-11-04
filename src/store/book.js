@@ -8,7 +8,7 @@ export default {
     books: [],
     currentBook: {
       image: '',
-      description: 'https://brodilla.com/assets/images/browsers/pictures/epic_browser_1_2.png'
+      description: ''
     },
     loading: false,
     searchText: '',

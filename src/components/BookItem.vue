@@ -7,8 +7,11 @@
           aspect-ratio="1.5"
           :src="book.image"
       />
+
       <v-divider/>
+
       <v-card-title>{{book.title}}</v-card-title>
+
       <v-card-text class="mt-auto">
         <h3 class="mb-2">{{book.authors}}</h3>
         <h3 class="text-center">{{book.publishedDate}}</h3>
@@ -50,7 +53,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

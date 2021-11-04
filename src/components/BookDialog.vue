@@ -1,7 +1,9 @@
 <template>
   <v-dialog v-model="dialogVisible" max-width="600">
     <v-card>
+
       <v-card-title class="justify-center">Заказ книги</v-card-title>
+
       <v-card-text>
         <v-container>
           <v-row>
@@ -120,7 +122,6 @@ export default {
   },
 
   watch: {
-
     value(newValue) {
       this.dialogVisible = newValue
     },
