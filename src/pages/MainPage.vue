@@ -1,6 +1,6 @@
 <template>
   <v-container class="my-7">
-    <SearchForm @searchBooks="searchText"/>
+    <SearchForm />
 
     <v-dialog
         v-model="getLoading"
@@ -58,10 +58,6 @@ export default {
 
   methods: {
     ...mapActions(['setBooks']),
-
-    searchBooks(text) {
-      this.setBooks(text)
-    },
 
     openBookDialog(book) {
       this.currentBook = book

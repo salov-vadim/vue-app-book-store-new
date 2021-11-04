@@ -60,11 +60,11 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['setTotal', 'showAlert', 'hideAlert']),
+    ...mapMutations(['setTotal', 'showAlert']),
     checkout() {
       this.setTotal(this.getTotal)
       this.showAlert()
-      this.hideAlert()
+      this.$store.dispatch('hideAlert')
       this.$router.push('/')
     }
   }
